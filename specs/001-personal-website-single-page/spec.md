@@ -81,14 +81,14 @@ A recruiter or collaborator wants to reach out. They scroll to the Contact secti
 ### Functional Requirements
 
 - **FR-001**: The page MUST render as a single scrollable HTML document with six named sections: Hero, About, Skills, Experience, Projects, Contact.
-- **FR-002**: The Hero section MUST display Masoud Moharrami's full name, a professional tagline ("Back-end Engineer & Cloud Specialist" or equivalent), and at least one call-to-action element.
-- **FR-003**: The About section MUST display a 2–4 sentence professional summary consistent with the resume summary.
+- **FR-002**: The Hero section MUST display Masoud Moharrami's full name, a professional tagline ("Back-end Engineer & Cloud Specialist" or equivalent), at least one call-to-action element, and a profile photo (`/src/assets/profile.jpg` or equivalent path).
+- **FR-003**: The About section MUST display a 2–4 sentence professional summary consistent with the resume summary. Hobbies and personal interests are explicitly excluded.
 - **FR-004**: The Skills section MUST display technical competencies grouped by category: Languages, Cloud & DevOps, Databases, Tools, System Design.
 - **FR-005**: The Experience section MUST list every role from the resume in reverse-chronological order, including company, title, date range, and key achievements.
 - **FR-006**: The Projects section MUST highlight at least three notable projects sourced from the resume (e.g., MySamanTel, Bourseeco, DigiPower, Beauty Life), each with a name, description, and technology context.
 - **FR-007**: The Contact section MUST include a GitHub profile link, a LinkedIn profile link, and an email contact mechanism.
 - **FR-008**: A sticky or scroll-triggered navigation bar MUST allow visitors to jump to any of the six sections via anchor links.
-- **FR-009**: The design MUST be visually distinctive — using a modern aesthetic (e.g., dark/light theme with accent color, subtle animations, or card-based layout) that stands out from default template styling.
+- **FR-009**: The design MUST be visually distinctive using a heavy animation profile: particle/canvas background in the Hero, parallax depth effects on scroll, continuous ambient animations (e.g., floating elements or gradient loops), section entrance animations with staggered children, and interactive hover effects on all cards and badges. A `prefers-reduced-motion` media query MUST disable or minimize all motion for accessibility compliance (WCAG AA). Note: heavy animations may impact Lighthouse performance (SC-002); bundle size and animation performance must be monitored.
 - **FR-010**: All page content MUST be accessible without JavaScript (progressive enhancement only).
 - **FR-011**: The page MUST be fully responsive across mobile (≥ 320 px), tablet (≥ 768 px), and desktop (≥ 1200 px).
 - **FR-012**: All external links MUST open in a new tab (`target="_blank"` with `rel="noopener noreferrer"`).
@@ -112,13 +112,24 @@ A recruiter or collaborator wants to reach out. They scroll to the Contact secti
 - **SC-006**: All seven roles from the resume appear in the Experience section in reverse-chronological order.
 - **SC-007**: All external links (GitHub, LinkedIn, email) are functional and open in a new tab.
 
+## Clarifications
+
+### Session 2026-04-29
+
+- Q: What should the Contact section use for email contact? → A: `mailto:` link only — pure static, no third-party service
+- Q: What is your actual email address and LinkedIn URL? → A: email = `m.masoud.1991@gmail.com`, LinkedIn = `https://www.linkedin.com/in/masoud-moharrami/`
+- Q: Should the Hero section include a profile photo? → A: Yes — include a real profile photo (image to be provided)
+- Q: Should the About section include hobbies (soccer, volleyball, camping)? → A: No — professional summary only
+- Q: What animation intensity should the site use? → A: Heavy — parallax, continuous loops, particle backgrounds
+
 ## Assumptions
 
 - Masoud's GitHub username is `masoooud` (inferred from the repository URL `masoooud.github.io`).
-- A LinkedIn profile URL will be provided by Masoud before the Contact section is finalized; a placeholder is acceptable during development.
-- An email address will be provided by Masoud before the Contact section is finalized; a placeholder is acceptable during development.
+- A profile photo will be provided by Masoud and placed at `src/assets/profile.jpg`. A placeholder image is acceptable during development.
+- LinkedIn profile URL: `https://www.linkedin.com/in/masoud-moharrami/`
+- Email address: `m.masoud.1991@gmail.com`
 - The "Projects" section draws from mobile apps listed in the resume; no additional projects beyond the resume are fabricated.
 - The visual theme (color palette, fonts) will default to a dark-background, light-text design with a single accent color — a common pattern for developer portfolios. This can be adjusted during implementation.
-- No contact form with server-side processing is required; a `mailto:` link or a third-party form service (e.g., Formspree) may be used if desired, but is not mandatory.
+- The Contact section uses a plain `mailto:` link — no third-party form service (e.g., Formspree) required. Pure static approach with no external dependencies.
 - The site is hosted on GitHub Pages; the existing Jekyll configuration (`_config.yml`) may be replaced with plain HTML/CSS/JS if a Jekyll-free approach is simpler.
 - Smooth-scroll behavior is implemented via CSS (`scroll-behavior: smooth`) or a small vanilla JS snippet — no full JavaScript framework.
