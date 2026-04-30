@@ -89,9 +89,9 @@ A recruiter or collaborator wants to reach out. They scroll to the Contact secti
 - **FR-007**: The Contact section MUST include a GitHub profile link, a LinkedIn profile link, and an email contact mechanism.
 - **FR-008**: A sticky or scroll-triggered navigation bar MUST allow visitors to jump to any of the six sections via anchor links.
 - **FR-009**: The design MUST be visually distinctive using a heavy animation profile: particle/canvas background in the Hero, parallax depth effects on scroll, continuous ambient animations (e.g., floating elements or gradient loops), section entrance animations with staggered children, and interactive hover effects on all cards and badges. A `prefers-reduced-motion` media query MUST disable or minimize all motion for accessibility compliance (WCAG AA). Note: heavy animations may impact Lighthouse performance (SC-002); bundle size and animation performance must be monitored.
-- **FR-010**: All page content MUST be accessible without JavaScript (progressive enhancement only).
+- **FR-010**: All page content MUST have a no-JS fallback: a `<noscript>` message with a direct link to the GitHub resume MUST be present. Full content rendering requires JavaScript (React SPA — justified deviation from progressive enhancement; documented in plan.md Complexity Tracking).
 - **FR-011**: The page MUST be fully responsive across mobile (≥ 320 px), tablet (≥ 768 px), and desktop (≥ 1200 px).
-- **FR-012**: All external links MUST open in a new tab (`target="_blank"` with `rel="noopener noreferrer"`).
+- **FR-012**: All external links MUST open in a new tab (`target="_blank"` with `rel="noopener noreferrer"`). Exception: `mailto:` links are exempt from `target="_blank"` as they invoke the system email client, not a browser tab.
 
 ### Key Entities
 
@@ -121,6 +121,7 @@ A recruiter or collaborator wants to reach out. They scroll to the Contact secti
 - Q: Should the Hero section include a profile photo? → A: Yes — include a real profile photo (image to be provided)
 - Q: Should the About section include hobbies (soccer, volleyball, camping)? → A: No — professional summary only
 - Q: What animation intensity should the site use? → A: Heavy — parallax, continuous loops, particle backgrounds
+- Analysis remediation (2026-04-29): FR-010 clarified (React SPA + noscript fallback); FR-012 mailto exception added; tasks.md updated with T031 (resume.pdf), T032 (favicon), T033 (Lighthouse audit); T010 deduplicated; T018 index prop made explicit
 
 ## Assumptions
 
