@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400">
+  <rect width="400" height="400" fill="#132238"/>
+  <circle cx="200" cy="160" r="70" fill="#243C5A"/>
+  <ellipse cx="200" cy="340" rx="120" ry="90" fill="#243C5A"/>
+  <circle cx="200" cy="160" r="65" fill="#1B2E45"/>
+  <text x="200" y="180" font-family="monospace" font-size="60" font-weight="bold" fill="#10B981" text-anchor="middle">MM</text>
+</svg>
