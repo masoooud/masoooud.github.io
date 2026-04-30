@@ -1,8 +1,8 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useCallback } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import { profile } from '../../data/resume.js';
 
-function ParticleCanvas() {
+function ParticleCanvas({ mousePosRef }) {
   const canvasRef = useRef(null);
   const prefersReduced = useReducedMotion();
 
@@ -20,19 +20,34 @@ function ParticleCanvas() {
     }
 
     function createParticles() {
-      particles = Array.from({ length: 60 }, () => ({
+      particles = Array.from({ length: 70 }, () => ({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
-        r: Math.random() * 1.5 + 0.5,
-        dx: (Math.random() - 0.5) * 0.4,
-        dy: (Math.random() - 0.5) * 0.4,
-        alpha: Math.random() * 0.5 + 0.1,
+        r: Math.random() * 1.8 + 0.5,
+        dx: (Math.random() - 0.5) * 0.5,
+        dy: (Math.random() - 0.5) * 0.5,
+        alpha: Math.random() * 0.5 + 0.15,
       }));
     }
 
     function draw() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
+      const mouse = mousePosRef.current;
+
       for (const p of particles) {
+        // Mouse repulsion
+        if (mouse) {
+          const mdx = p.x - mouse.x;
+          const mdy = p.y - mouse.y;
+          const mdist = Math.sqrt(mdx * mdx + mdy * mdy);
+          const repelRadius = 110;
+          if (mdist < repelRadius && mdist > 0) {
+            const force = (1 - mdist / repelRadius) * 1.2;
+            p.x += (mdx / mdist) * force;
+            p.y += (mdy / mdist) * force;
+          }
+        }
+
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
         ctx.fillStyle = `rgba(16,185,129,${p.alpha})`;
@@ -42,6 +57,7 @@ function ParticleCanvas() {
         if (p.x < 0 || p.x > canvas.width) p.dx *= -1;
         if (p.y < 0 || p.y > canvas.height) p.dy *= -1;
       }
+
       // Draw lines between close particles
       for (let i = 0; i < particles.length; i++) {
         for (let j = i + 1; j < particles.length; j++) {
@@ -52,7 +68,7 @@ function ParticleCanvas() {
             ctx.beginPath();
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.strokeStyle = `rgba(16,185,129,${0.08 * (1 - dist / 120)})`;
+            ctx.strokeStyle = `rgba(16,185,129,${0.1 * (1 - dist / 120)})`;
             ctx.lineWidth = 0.5;
             ctx.stroke();
           }
@@ -75,7 +91,7 @@ function ParticleCanvas() {
       cancelAnimationFrame(animId);
       ro.disconnect();
     };
-  }, [prefersReduced]);
+  }, [prefersReduced, mousePosRef]);
 
   if (prefersReduced) return null;
 
@@ -99,20 +115,33 @@ const itemVariants = {
 };
 
 export default function Hero() {
+  const prefersReduced = useReducedMotion();
+  const sectionRef = useRef(null);
+  const mousePosRef = useRef(null);
+
+  const handleMouseMove = useCallback((e) => {
+    if (prefersReduced) return;
+    const rect = sectionRef.current?.getBoundingClientRect();
+    if (!rect) return;
+    mousePosRef.current = { x: e.clientX - rect.left, y: e.clientY - rect.top };
+  }, [prefersReduced]);
+
+  const handleMouseLeave = useCallback(() => {
+    mousePosRef.current = null;
+  }, []);
+
   return (
     <section
+      ref={sectionRef}
       id="hero"
       aria-labelledby="hero-heading"
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
       className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden
         bg-slate-50 dark:bg-navy-950"
     >
-      <ParticleCanvas />
+      <ParticleCanvas mousePosRef={mousePosRef} />
 
-      {/* Radial gradient accent */}
-      <div
-        aria-hidden="true"
-        className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(16,185,129,0.07)_0%,transparent_70%)] pointer-events-none"
-      />
 
       <motion.div
         variants={containerVariants}

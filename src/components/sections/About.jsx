@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { profile } from '../../data/resume.js';
 import SectionHeading from '../ui/SectionHeading.jsx';
-import profileImg from '../../assets/profile.svg';
+import profileImg from '../../assets/profile.jpg';
 
 export default function About() {
   return (
