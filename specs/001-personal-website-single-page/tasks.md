@@ -125,6 +125,17 @@
 
 ---
 
+## Phase 7: Post-Launch Enhancements (May 2026)
+
+**Purpose**: Visual polish and content improvements applied after initial deployment based on user feedback.
+
+- [X] T034 Update `src/data/resume.js` — (a) rewrite `profile.summary` with `**bold**` keyword markers (`Back-end expert`, `Enterprise Microservices`, `Cloud-Native`, `Performance Optimization`, `Agile delivery`) for accent-colored rendering; (b) add `profile.summaryLong` preserving the original prose summary for the About section; (c) add `capabilities` array (4 entries: Microservices & Cloud-Native, Performance Optimization, CI/CD & DevOps, System Architecture) each with `id`, `icon` (Lucide name string), `title`, `description`
+- [X] T035 Update `tailwind.config.js` — add custom `animation: { 'spin-slow': 'spin 6s linear infinite' }` for the About section photo gradient ring
+- [X] T036 Update `src/components/sections/Hero.jsx` — (a) import `profile.jpg` and render circular avatar (`w-28 h-28 rounded-full ring-4 ring-accent`) above "Hello, I'm" greeting; (b) update summary rendering to parse `**text**` markers and wrap matched segments in `<strong className="text-accent dark:text-accent-dark">` for accent-colored bold keywords
+- [X] T037 Update `src/components/sections/About.jsx` — full redesign: (a) add inline stats row (`9+ Years Experience`, `4+ Years in Back-End`, `15+ Enterprise Apps Shipped`) with accent-colored values; (b) split `summaryLong` into two shorter paragraphs; (c) add location pill badge and "Open to senior / staff roles" availability badge using Lucide `MapPin` + `Briefcase`; (d) replace square photo with circular crop inside a slow-spinning conic-gradient ring (`animate-spin-slow`); (e) add labeled `Core Strengths` horizontal divider between bio and cards; (f) render `capabilities` as a 4-column card grid with Lucide icons, `shadow-md` base elevation, and `hover:-translate-y-1 hover:shadow-xl` lift effect
+
+---
+
 ## Dependencies (User Story Completion Order)
 
 ```

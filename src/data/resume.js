@@ -1,16 +1,41 @@
 export const profile = {
   name: 'Masoud Moharrami',
-  tagline: 'Back-End Engineer & Cloud Specialist',
-  summary: `Back-end expert with a proven track record for delivering enterprise
-applications. Adept at designing and optimizing microservices, improving
-application performance, and collaborating in agile environments. Passionate
-about evolving as a developer and constantly looking for opportunities to learn.`,
+  tagline: 'Senior Software Engineer & Cloud Specialist',
+  summary: `**Back-end expert** crafting **Enterprise Microservices** & **Cloud-Native** systems. Proven in **Performance Optimization**, **Agile delivery**, and **Scalable Architecture**. Always learning, Always shipping.`,
+  summaryLong: `Back-end expert with a proven track record for delivering enterprise applications. Adept at designing and optimizing microservices, improving application performance, and collaborating in agile environments. Passionate about evolving as a developer and constantly looking for opportunities to learn.`,
   location: 'Toronto, ON',
   github: 'https://github.com/masoooud',
   linkedin: 'https://www.linkedin.com/in/masoud-moharrami/',
   email: 'm.masoud.1991@gmail.com',
   resumePdf: '/resume.pdf',
 };
+
+export const capabilities = [
+  {
+    id: 'architecture',
+    icon: 'Cpu',
+    title: 'System Architecture',
+    description: 'Designing high-level architectures focused on scalability, fault tolerance, and resilient distributed systems.',
+  },
+  {
+    id: 'microservices',
+    icon: 'Layers',
+    title: 'Microservices & Cloud-Native',
+    description: 'Designing scalable Java & Golang microservices orchestrated with Kubernetes, Helm, and Service Mesh on Azure.',
+  },
+  {
+    id: 'performance',
+    icon: 'Zap',
+    title: 'Performance Optimization',
+    description: 'Boosted system performance by 20%+ through caching strategies, query tuning, and latency reduction.',
+  },
+  {
+    id: 'devops',
+    icon: 'GitBranch',
+    title: 'CI/CD & DevOps',
+    description: 'Building and optimizing CI/CD pipelines with Azure DevOps, Docker, and Kubernetes to cut deployment overhead.',
+  },
+];
 
 export const skillGroups = [
   {

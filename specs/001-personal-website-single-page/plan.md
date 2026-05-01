@@ -57,8 +57,8 @@ src/
 │   │   ├── Navbar.jsx          # Sticky nav with section links + theme toggle
 │   │   └── ThemeToggle.jsx     # 3-state toggle: system / light / dark
 │   ├── sections/
-│   │   ├── Hero.jsx            # Full-viewport hero with name, tagline, CTAs
-│   │   ├── About.jsx           # Professional summary paragraph
+│   │   ├── Hero.jsx            # Full-viewport hero with circular avatar, bold-keyword summary, name, tagline, CTAs
+│   │   ├── About.jsx           # Stats row, two-paragraph bio, availability badges, circular photo with spin-ring, Core Strengths capability cards
 │   │   ├── Skills.jsx          # Grouped skill badges by category
 │   │   ├── Experience.jsx      # Timeline container
 │   │   ├── Projects.jsx        # Project card grid
