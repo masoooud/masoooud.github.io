@@ -209,7 +209,7 @@ export default function Hero() {
           </a>
           <a
             href={profile.resumePdf}
-            download
+            download="Masoud Moharrami - Resume.pdf"
             aria-label="Download Masoud Moharrami's CV"
             className="px-7 py-3 rounded-lg border-2 border-accent dark:border-accent-dark
               text-accent dark:text-accent-dark font-semibold
