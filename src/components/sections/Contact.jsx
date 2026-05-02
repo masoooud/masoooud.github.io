@@ -72,9 +72,62 @@ export default function Contact() {
     <section
       id="contact"
       aria-labelledby="contact-heading"
-      className="py-24 bg-white dark:bg-navy-900"
+      className="relative overflow-hidden py-24 min-h-screen flex flex-col justify-center bg-white dark:bg-navy-900"
     >
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+      {/* Decorative network */}
+      <div aria-hidden="true" className="absolute inset-0 pointer-events-none">
+        {/* Gradient blobs */}
+        <motion.div
+          animate={{ x: [0, 30, 0], y: [0, -20, 0] }}
+          transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
+          className="absolute -top-24 right-[5%] w-80 h-80 rounded-full bg-emerald-400/10 blur-3xl"
+        />
+        <motion.div
+          animate={{ x: [0, -20, 0], y: [0, 28, 0] }}
+          transition={{ duration: 13, repeat: Infinity, ease: 'easeInOut', delay: 4 }}
+          className="absolute -bottom-24 left-[5%] w-72 h-72 rounded-full bg-blue-400/10 blur-3xl"
+        />
+        {/* Pulsing network nodes */}
+        {[
+          { style: { left: '8%', top: '20%' }, dur: 4, delay: 0 },
+          { style: { left: '15%', top: '70%' }, dur: 5, delay: 1.2 },
+          { style: { left: '85%', top: '25%' }, dur: 6, delay: 0.5 },
+          { style: { left: '90%', top: '65%' }, dur: 4, delay: 2.0 },
+          { style: { left: '50%', top: '8%' }, dur: 5, delay: 1.5 },
+          { style: { left: '55%', top: '88%' }, dur: 7, delay: 0.8 },
+          { style: { left: '25%', top: '45%' }, dur: 5, delay: 3.1 },
+          { style: { left: '75%', top: '50%' }, dur: 6, delay: 1.8 },
+        ].map((n, i) => (
+          <motion.div
+            key={i}
+            style={n.style}
+            animate={{ opacity: [0.08, 0.30, 0.08], scale: [0.8, 1.6, 0.8] }}
+            transition={{ duration: n.dur, repeat: Infinity, ease: 'easeInOut', delay: n.delay }}
+            className="absolute w-2 h-2 rounded-full bg-emerald-400 -translate-x-1/2 -translate-y-1/2"
+          />
+        ))}
+        {/* Connection lines */}
+        <svg className="absolute inset-0 w-full h-full" preserveAspectRatio="none">
+          {[
+            ['8%', '20%', '25%', '45%', 4, 0],
+            ['25%', '45%', '50%', '8%', 5, 1],
+            ['50%', '8%', '85%', '25%', 6, 0.5],
+            ['85%', '25%', '90%', '65%', 4, 2],
+            ['15%', '70%', '55%', '88%', 5, 1.5],
+            ['75%', '50%', '90%', '65%', 6, 0.8],
+          ].map(([x1, y1, x2, y2, dur, delay], i) => (
+            <motion.line
+              key={i}
+              x1={x1} y1={y1} x2={x2} y2={y2}
+              stroke="rgba(16,185,129,0.12)"
+              strokeWidth="1"
+              animate={{ opacity: [0.2, 0.8, 0.2] }}
+              transition={{ duration: dur, repeat: Infinity, ease: 'easeInOut', delay }}
+            />
+          ))}
+        </svg>
+      </div>
+      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}

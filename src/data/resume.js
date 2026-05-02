@@ -60,7 +60,7 @@ export const skillGroups = [
     id: 'tools',
     label: 'Tools & Methods',
     icon: 'Wrench',
-    items: ['Git', 'Jira', 'Jenkins', 'Agile', 'Scrum'],
+    items: ['Git', 'Jira', 'Azure DevOps', 'Agile', 'Scrum'],
   },
   {
     id: 'system-design',

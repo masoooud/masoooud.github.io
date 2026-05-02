@@ -1,10 +1,8 @@
 import { motion } from 'framer-motion';
-import { Layers, Zap, GitBranch, Cpu, MapPin, Briefcase } from 'lucide-react';
-import { profile, capabilities } from '../../data/resume.js';
+import { MapPin, Briefcase } from 'lucide-react';
+import { profile } from '../../data/resume.js';
 import SectionHeading from '../ui/SectionHeading.jsx';
 import profileImg from '../../assets/profile.jpg';
-
-const iconMap = { Layers, Zap, GitBranch, Cpu };
 
 const stats = [
   { value: '9+', label: 'Years Experience' },
@@ -17,9 +15,71 @@ export default function About() {
     <section
       id="about"
       aria-labelledby="about-heading"
-      className="py-24 bg-white dark:bg-navy-900"
+      className="relative overflow-hidden py-24 min-h-screen flex flex-col justify-center bg-white dark:bg-navy-900"
     >
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+      {/* Decorative background */}
+      <div aria-hidden="true" className="absolute inset-0 pointer-events-none">
+        {/* Subtle dot grid */}
+        <div
+          className="absolute inset-0"
+          style={{ backgroundImage: 'radial-gradient(rgba(16,185,129,0.07) 1.5px, transparent 1.5px)', backgroundSize: '30px 30px' }}
+        />
+        {/* Rotating dashed rings — top-right */}
+        <motion.svg
+          animate={{ rotate: 360 }}
+          transition={{ duration: 35, repeat: Infinity, ease: 'linear' }}
+          className="absolute -top-24 -right-20 w-[520px] h-[520px] pointer-events-none"
+          viewBox="0 0 520 520"
+          style={{ color: 'rgba(16,185,129,0.13)' }}
+        >
+          <circle cx="260" cy="260" r="220" fill="none" stroke="currentColor" strokeWidth="1.5" strokeDasharray="12 18" />
+          <circle cx="260" cy="260" r="162" fill="none" stroke="currentColor" strokeWidth="1" strokeDasharray="7 22" />
+          <circle cx="260" cy="260" r="98" fill="none" stroke="currentColor" strokeWidth="0.8" strokeDasharray="4 16" />
+        </motion.svg>
+        {/* Counter-rotating rings — bottom-left */}
+        <motion.svg
+          animate={{ rotate: -360 }}
+          transition={{ duration: 50, repeat: Infinity, ease: 'linear' }}
+          className="absolute -bottom-32 -left-24 w-[440px] h-[440px] pointer-events-none"
+          viewBox="0 0 440 440"
+          style={{ color: 'rgba(99,102,241,0.10)' }}
+        >
+          <circle cx="220" cy="220" r="185" fill="none" stroke="currentColor" strokeWidth="1.5" strokeDasharray="10 15" />
+          <circle cx="220" cy="220" r="125" fill="none" stroke="currentColor" strokeWidth="1" strokeDasharray="5 18" />
+        </motion.svg>
+        {/* Gradient blobs */}
+        <motion.div
+          animate={{ x: [0, 35, 0], y: [0, -25, 0] }}
+          transition={{ duration: 9, repeat: Infinity, ease: 'easeInOut' }}
+          className="absolute -top-20 right-[8%] w-96 h-96 rounded-full bg-emerald-400/15 blur-3xl"
+        />
+        <motion.div
+          animate={{ x: [0, -22, 0], y: [0, 32, 0] }}
+          transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut', delay: 3 }}
+          className="absolute -bottom-20 left-[3%] w-80 h-80 rounded-full bg-indigo-400/10 blur-3xl"
+        />
+        <motion.div
+          animate={{ x: [0, 18, 0], y: [0, -18, 0] }}
+          transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut', delay: 1.5 }}
+          className="absolute bottom-[10%] right-[35%] w-64 h-64 rounded-full bg-sky-400/10 blur-3xl"
+        />
+        <motion.div
+          animate={{ x: [0, 24, 0], y: [0, 18, 0] }}
+          transition={{ duration: 11, repeat: Infinity, ease: 'easeInOut', delay: 5 }}
+          className="absolute top-[38%] left-[14%] w-48 h-48 rounded-full bg-amber-400/10 blur-3xl"
+        />
+        {/* Sparkle dots */}
+        {[[18, 72], [83, 28], [44, 87], [66, 13], [9, 47], [91, 62], [55, 38], [30, 56]].map(([x, y], i) => (
+          <motion.div
+            key={i}
+            animate={{ opacity: [0, 0.65, 0], scale: [0.6, 1.4, 0.6] }}
+            transition={{ duration: 2.5 + i * 0.6, repeat: Infinity, ease: 'easeInOut', delay: i * 1.0 }}
+            className="absolute w-1.5 h-1.5 rounded-full bg-emerald-400"
+            style={{ left: `${x}%`, top: `${y}%` }}
+          />
+        ))}
+      </div>
+      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -79,7 +139,7 @@ export default function About() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: '-80px' }}
             transition={{ duration: 0.6, ease: 'easeOut', delay: 0.2 }}
-            className="flex justify-center"
+            className="flex justify-center order-first md:order-last"
           >
             <div className="relative w-64 h-64">
               {/* Rotating gradient ring */}
@@ -102,56 +162,8 @@ export default function About() {
             </div>
           </motion.div>
         </div>
-
-        {/* ── Divider ── */}
-        <div className="flex items-center gap-4 mt-16 mb-10">
-          <div className="flex-1 border-t border-slate-200 dark:border-slate-700" />
-          <span className="text-xs font-semibold uppercase tracking-widest text-slate-400 dark:text-slate-500">
-            Core Strengths
-          </span>
-          <div className="flex-1 border-t border-slate-200 dark:border-slate-700" />
-        </div>
-
-        {/* ── Capability cards ── */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-80px' }}
-          transition={{ duration: 0.6, ease: 'easeOut', delay: 0.2 }}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5"
-        >
-          {capabilities.map((cap, i) => {
-            const Icon = iconMap[cap.icon];
-            return (
-              <motion.div
-                key={cap.id}
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-60px' }}
-                transition={{ duration: 0.5, ease: 'easeOut', delay: 0.1 * i }}
-                className="flex flex-col items-center text-center gap-4 p-6
-                  rounded-2xl border border-slate-200 dark:border-slate-700
-                  bg-slate-50 dark:bg-navy-950
-                  shadow-md dark:shadow-navy-950/60
-                  hover:border-accent dark:hover:border-accent-dark
-                  hover:shadow-xl hover:-translate-y-1
-                  transition-all duration-300"
-              >
-                <div className="w-14 h-14 rounded-full flex items-center justify-center
-                  bg-accent/10 dark:bg-accent-dark/10">
-                  {Icon && <Icon size={26} className="text-accent dark:text-accent-dark" />}
-                </div>
-                <h3 className="font-semibold text-slate-900 dark:text-white text-base">
-                  {cap.title}
-                </h3>
-                <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
-                  {cap.description}
-                </p>
-              </motion.div>
-            );
-          })}
-        </motion.div>
       </div>
     </section>
   );
 }
+
