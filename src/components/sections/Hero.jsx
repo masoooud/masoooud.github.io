@@ -200,12 +200,12 @@ export default function Hero() {
 
         <motion.div variants={itemVariants} className="flex flex-col sm:flex-row mb-10 gap-4 justify-center">
           <a
-            href="#about"
+            href="#experience"
             className="px-7 py-3 rounded-lg bg-accent dark:bg-accent-dark text-white dark:text-navy-950
               font-semibold hover:opacity-90 transition-opacity focus-visible:outline-none
               focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-accent"
           >
-            Explore My Work
+            View My Experience
           </a>
           <a
             href={profile.resumePdf}
